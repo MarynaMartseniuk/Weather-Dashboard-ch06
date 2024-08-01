@@ -1,0 +1,116 @@
+:root {
+    --grey: rgb(199, 198, 198);
+    --lBlack: rgb(49, 49, 49);
+    --lBlue: rgb(117, 197, 250);
+    --mBlue: rgb(46, 121, 172);
+    --dBlue: rgb(5, 74, 121);
+    --milk: rgb(247, 246, 241);
+}
+    
+body {
+    border: solid 2px black;
+    border-radius: 5px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+h2 {
+    width: 66%;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    color: var(--milk);
+}
+
+form {
+    margin: 5px;
+}
+
+p {
+    margin: 0;
+}
+
+label {
+    margin: 10px;
+}
+
+input {
+    padding: 7px;
+}
+
+button {
+    background-color: var(--lBlue);
+    color: var(--milk);
+    border:none;
+    border-radius: 3px;
+    width: 95%;
+    padding: 5px;
+    margin: 5px;
+}
+
+footer {
+    font-size: 10px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.sameColor {
+    color: black;
+}
+
+.sameColor span {
+    color: inherit;
+}
+
+#title {
+    background-image: linear-gradient( 90deg, var(--mBlue), var(--dBlue));
+    margin: 5px;
+    display: flex;
+    justify-content: right;
+}
+
+#display {
+    display: flex;
+    flex-direction: row;
+    background-color: aqua;
+}
+
+#city {
+    flex: 1;
+    border: solid 2px black;
+    display: flex;
+    flex-direction: column;
+}
+
+#city-search {
+    background-color: red;
+    margin: 5px;
+}
+
+#search {
+    width: 86%;
+    margin: 5px;
+}
+
+#city-history {
+    background-color: green;
+    margin: 5px;
+    padding: 10px;
+}
+
+
+#weather {
+    flex: 2;
+    border: solid 2px black;
+    display: flex;
+    flex-direction: column;
+}
+
+#weather-one {
+    border: solid 2px red;
+}
+
+#weather-five {
+    border: solid 2px green;
+}
