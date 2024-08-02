@@ -42,12 +42,15 @@ searchBtn.addEventListener('click', function (event) {
             cityCard = document.createElement('div');
             cityCard.style.border = 'none';
             cityCard.style.borderRadius = '4px';
-            cityCard.style.margin = '10px';
+            cityCard.style.margin = '0px';
             cityCard.style.backgroundColor = 'var(--grey)';
+
 
             cityTitle = document.createElement('p');
             cityTitle.style.fontStyle = 'italic';
             cityTitle.style.marginTop = '5px';
+            cityTitle.style.padding = '5px';
+            cityTitle.style.width = '100%';
 
             cityTitle.textContent = getCitiesList[i].cityName;
 
