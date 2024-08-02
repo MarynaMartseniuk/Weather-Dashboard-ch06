@@ -12,7 +12,7 @@ var addNewCity = {};
 searchBtn.addEventListener('click', function (event) {
     event.preventDefault();
 
-    // localStorage.removeItem('city');
+    localStorage.removeItem('city');
 
     //work with a Local Storage
     if (userCityInput.value) {
@@ -32,6 +32,11 @@ searchBtn.addEventListener('click', function (event) {
         // to sure of what cities are stored in LocalStorage, get list of cities from Local Storage and then display it
         let getCitiesList = JSON.parse(localStorage.getItem("city"));
         console.log(getCitiesList);
+
+        //source: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
+        while (cityHistoryOutput.hasChildNodes()) {
+            cityHistoryOutput.removeChild(cityHistoryOutput.firstChild);
+          }
 
         for (let i = 0; i < getCitiesList.length; i++) {
             cityCard = document.createElement('div');
