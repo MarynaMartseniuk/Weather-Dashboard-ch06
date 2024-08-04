@@ -106,15 +106,27 @@ footer {
 
 #weather {
     flex: 2;
-    border: solid 2px black;
+    /* border: solid 2px black; */
     display: flex;
     flex-direction: column;
 }
 
 #weather-one {
-    border: solid 2px red;
+    border: solid 1px black;
+    border-radius: 3px;
+    font-weight: 300;
+    padding: 10px;
+    margin: 10px;
 }
 
 #weather-five {
-    border: solid 2px green;
+    /* border: solid 1px green; */
+    padding: 10px;
+}
+
+#weather-five-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 300;
 }

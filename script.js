@@ -4,7 +4,7 @@ const searchBtn = document.querySelector('#searchButton');
 
 //out data
 const todayWeatherOutput = document.querySelector('#weather-one');
-const fiveWeatherOutput = document.querySelector('#weather-five');
+const fiveWeatherOutput = document.querySelector('#weather-five-display');
 const cityHistoryOutput = document.querySelector('#city-history');
 
 //other data
@@ -38,6 +38,7 @@ searchBtn.addEventListener('click', function (event) {
             weatherTodayCard = document.createElement('div');
 
             weatherTodayCity = document.createElement('p');
+            weatherTodayCity.style.fontWeight = '700';
 
             weatherTodayTemp = document.createElement('p');
 
@@ -57,7 +58,6 @@ searchBtn.addEventListener('click', function (event) {
         }); 
 
         //get weather for next 5 days
-
 
         let coordinatesURL = `http://api.openweathermap.org/geo/1.0/direct?q=${userCityInput.value}&limit=1&appid=${APIKey}`;
 
@@ -84,40 +84,45 @@ searchBtn.addEventListener('click', function (event) {
                 console.log(data);
 
                 //source: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
-                while (todayWeatherOutput.hasChildNodes()) {
-                    todayWeatherOutput.removeChild(todayWeatherOutput.firstChild);
+                while (fiveWeatherOutput.hasChildNodes()) {
+                    fiveWeatherOutput.removeChild(fiveWeatherOutput.firstChild);
                 };
                 
-                // weatherFiveTodayCard = document.createElement('div');
+                for (let i = 2; i < 35; i = i+8) {
+                    weatherFiveCard = document.createElement('div');
+                    weatherFiveCard.style.display = 'inline';
+                    weatherFiveCard.style.border = 'solid 1px black';
+                    weatherFiveCard.style.backgroundColor = 'var(--lBlack)';
+                    weatherFiveCard.style.color = 'white';
+                    weatherFiveCard.style.padding = '5px';
+                    weatherFiveCard.style.margin = '5px';
 
-                // weatherFiveTodayCity = document.createElement('p');
+                    weatherFiveDate = document.createElement('p');
+                    weatherFiveDate.style.fontWeight = '700';
 
-                // weatherTodayTemp = document.createElement('p');
+                    weatherFiveTemp = document.createElement('p');
 
-                // weatherTodayWind = document.createElement('p');
+                    weatherFiveWind = document.createElement('p');
 
-                // weatherTodayHumdt = document.createElement('p');
+                    weatherFiveHumdt = document.createElement('p');
 
 
-                // weatherTodayCity.textContent = `${data.name}, ${data.sys.country}`;
-                // weatherTodayTemp.textContent = `Temp: ${data.main.temp} F`;
-                // weatherTodayWind.textContent = `Wind: ${data.wind.speed} MPH`;
-                // weatherTodayHumdt.textContent = `Humidity: ${data.main.humidity} %`;
 
-                // weatherTodayCard.append(weatherTodayCity, weatherTodayTemp, weatherTodayWind, weatherTodayHumdt);
-                // todayWeatherOutput.appendChild(weatherTodayCard);
+                    weatherFiveDate.textContent = `${data.list[i].dt_txt}`;
+                    weatherFiveTemp.textContent = `Temp: ${data.list[i].main.temp} F`;
+                    weatherFiveWind.textContent = `Wind: ${data.list[i].wind.speed} MPH`;
+                    weatherFiveHumdt.textContent = `Humidity: ${data.list[i].main.humidity} %`;
+
+                    weatherFiveCard.append(weatherFiveDate, weatherFiveTemp, weatherFiveWind, weatherFiveHumdt);
+                    fiveWeatherOutput.appendChild(weatherFiveCard);
+                    
+                };
+
+                
             
             });
-
-
-            
+    
         });
-
-        
-
-        
-
-
 
         // save data to Local Storage
         addNewCity =  {
