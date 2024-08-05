@@ -30,6 +30,11 @@ searchBtn.addEventListener('click', function (event) {
         .then(function (data) {
             console.log(data);
 
+            const today = dayjs();
+            let dateInput = today.format('MM/DD/YYYY');
+
+            console.log(dateInput);
+
              //source: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
             while (todayWeatherOutput.hasChildNodes()) {
                 todayWeatherOutput.removeChild(todayWeatherOutput.firstChild);
@@ -47,7 +52,8 @@ searchBtn.addEventListener('click', function (event) {
             weatherTodayHumdt = document.createElement('p');
 
 
-            weatherTodayCity.textContent = `${data.name}, ${data.sys.country}`;
+            weatherTodayCity.textContent = `${data.name} (${dateInput})`;
+
             weatherTodayTemp.textContent = `Temp: ${data.main.temp} F`;
             weatherTodayWind.textContent = `Wind: ${data.wind.speed} MPH`;
             weatherTodayHumdt.textContent = `Humidity: ${data.main.humidity} %`;
@@ -106,9 +112,11 @@ searchBtn.addEventListener('click', function (event) {
 
                     weatherFiveHumdt = document.createElement('p');
 
+                    const day = dayjs(new Date(data.list[i].dt_txt));
+                    let dayInput = day.format('MM/DD/YYYY');
 
 
-                    weatherFiveDate.textContent = `${data.list[i].dt_txt}`;
+                    weatherFiveDate.textContent = `${dayInput}`;
                     weatherFiveTemp.textContent = `Temp: ${data.list[i].main.temp} F`;
                     weatherFiveWind.textContent = `Wind: ${data.list[i].wind.speed} MPH`;
                     weatherFiveHumdt.textContent = `Humidity: ${data.list[i].main.humidity} %`;
