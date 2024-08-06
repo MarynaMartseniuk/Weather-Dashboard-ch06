@@ -59,8 +59,9 @@ searchBtn.addEventListener('click', function (event) {
                 weatherTodayWeather.textContent = `${data.weather[0].main}`;
                 console.log(weatherTodayWeather.textContent);
 
-                //source for icon display was chatGPT:  const unicodeCharacter = String.fromCodePoint(decimalCode);
-                //source for weather condition variants is the website I am using for this WebApp https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2 
+                // source for icon display was chatGPT:  const unicodeCharacter = String.fromCodePoint(decimalCode);
+                // source for weather condition variants is the website I am using for this WebApp https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
+                // source for weather icons https://www.w3schools.com/charsets/ref_emoji_weather.asp 
                 if (weatherTodayWeather.textContent === 'Clouds') {weatherTodayWeatherIcon = String.fromCodePoint(9925);};
                 if (weatherTodayWeather.textContent === 'Thunderstorm') {weatherTodayWeatherIcon = String.fromCodePoint(127785)};
                 if (weatherTodayWeather.textContent === 'Drizzle') {weatherTodayWeatherIcon = String.fromCodePoint(127782)};
@@ -145,8 +146,9 @@ searchBtn.addEventListener('click', function (event) {
                     // weatherFiveWeather.textContent = `${data.list[i].weather[0].main}`;
                     // console.log(weatherFiveWeather.textContent);
 
-                    // // //source for icon display was chatGPT:  const unicodeCharacter = String.fromCodePoint(decimalCode);
-                    // // //source for weather condition variants is the website I am using for this WebApp https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2 
+                    // // // source for icon display was chatGPT:  const unicodeCharacter = String.fromCodePoint(decimalCode);
+                    // // // source for weather condition variants is the website I am using for this WebApp https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
+                    // // // source for weather icons https://www.w3schools.com/charsets/ref_emoji_weather.asp 
                     // // if (weatherFiveWeather.textContent === 'Clouds') {weatherFiveWeatherIcon = String.fromCodePoint(9925);};
                     // // if (weatherFiveWeather.textContent === 'Thunderstorm') {weatherFiveWeatherIcon = String.fromCodePoint(127785)};
                     // // if (weatherFiveWeather.textContent === 'Drizzle') {weatherFiveWeatherIcon = String.fromCodePoint(127782)};
@@ -167,8 +169,6 @@ searchBtn.addEventListener('click', function (event) {
                     fiveWeatherOutput.appendChild(weatherFiveCard);
                     
                 };
-
-                
             
             });
     
@@ -180,6 +180,11 @@ searchBtn.addEventListener('click', function (event) {
         };
     
         citiesList.push(addNewCity);
+
+        // lets keep the number of cities in storage equal to 8 as to mock-up
+        if (citiesList.length > 8) {
+            citiesList.shift();
+        };
     
         localStorage.setItem("city", JSON.stringify(citiesList));
     
@@ -214,7 +219,7 @@ searchBtn.addEventListener('click', function (event) {
             cityCard.appendChild(cityTitle);
             cityHistoryOutput.appendChild(cityCard);
 
-        }
+        };
 
     } else {
         alert("Please, fill in a city name!");
