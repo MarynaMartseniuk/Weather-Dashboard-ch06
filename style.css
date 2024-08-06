@@ -15,7 +15,7 @@ body {
     font-style: normal;
 }
 
-h2 {
+h1 {
     width: 66%;
     margin: 0;
     padding: 10px;
@@ -33,10 +33,12 @@ p {
 
 label {
     margin: 10px;
+    font-size: 25px;
 }
 
 input {
     padding: 7px;
+    font-size: 20px;
 }
 
 button {
@@ -47,6 +49,7 @@ button {
     width: 95%;
     padding: 5px;
     margin: 5px;
+    font-size: 20px;
 }
 
 footer {

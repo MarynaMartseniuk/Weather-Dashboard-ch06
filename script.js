@@ -219,6 +219,7 @@ searchBtn.addEventListener('click', function (event) {
                 cityTitle.style.marginTop = '5px';
                 cityTitle.style.padding = '5px';
                 cityTitle.style.width = '100%';
+                cityTitle.style.fontSize = '20px';
                 
                 // source chatGPT 
                 // 1. const textContent = paragraph.textContent;
