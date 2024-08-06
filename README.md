@@ -4,7 +4,7 @@ A weather dashboard that runs in the browser and has dynamically updated HTML an
 ## Instalation
 Follow this link to get to the page https://marynamartseniuk.github.io/Weather-Dashboard-ch06/
 
-![WebPage as it looks like]()
+![WebPage as it looks like](https://github.com/MarynaMartseniuk/Weather-Dashboard-ch06/blob/main/assets/page-with-data-bug.jpg)
 
 
 ## source:
