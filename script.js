@@ -214,8 +214,7 @@ searchBtn.addEventListener('click', function (event) {
                 cityCard.style.backgroundColor = 'var(--grey)';
 
 
-                cityTitle = document.createElement('button');
-                cityTitle.setAttribute('type', 'button');
+                cityTitle = document.createElement('p');
                 cityTitle.style.fontStyle = 'italic';
                 cityTitle.style.marginTop = '5px';
                 cityTitle.style.padding = '5px';
@@ -317,17 +316,16 @@ cityTarget.addEventListener('click', function (event) {
   const element = event.target;
 
   // Check if the clicked element was an paragraf
-  if (element.matches('button')) {
+  if (element.matches('p')) {
     // Get the current value of the paragraf's data-text attribute. It is a city name. So now we can do a new fetch requestby this city-name to display weather forcast
     const getCity = element.getAttribute('data-text');
-
-
+    console.log(getCity);
 
     //get weather for today
 
-    let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${getCity.value}&appid=${APIKey}`;
+    let newQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${getCity}&appid=${APIKey}`;
 
-    fetch(queryURL)
+    fetch(newQueryURL)
     .then(function (response) {
         return response.json();
     })
@@ -390,7 +388,7 @@ cityTarget.addEventListener('click', function (event) {
     // ==========================
     //get weather for next 5 days
 
-    let coordinatesURL = `http://api.openweathermap.org/geo/1.0/direct?q=${getCity.value}&limit=1&appid=${APIKey}`;
+    let coordinatesURL = `http://api.openweathermap.org/geo/1.0/direct?q=${getCity}&limit=1&appid=${APIKey}`;
 
     fetch(coordinatesURL )
     .then(function (response) {
