@@ -45,22 +45,41 @@ searchBtn.addEventListener('click', function (event) {
             weatherTodayCity = document.createElement('p');
             weatherTodayCity.style.fontWeight = '700';
 
+            weatherTodayWeather = document.createElement('p');
+            weatherTodayCity.style.
+
             weatherTodayTemp = document.createElement('p');
 
             weatherTodayWind = document.createElement('p');
 
             weatherTodayHumdt = document.createElement('p');
+            
+                // let's find icon for weather condition "weatherTodayWeatherIcon" to display it then after the city name and today-date
 
+                weatherTodayWeather.textContent = `${data.weather[0].main}`;
+                console.log(weatherTodayWeather.textContent);
 
-            weatherTodayCity.textContent = `${data.name} (${dateInput})`;
+                //source for icon display was chatGPT:  const unicodeCharacter = String.fromCodePoint(decimalCode);
+                //source for weather condition variants is the website I am using for this WebApp https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2 
+                if (weatherTodayWeather.textContent === 'Clouds') {weatherTodayWeatherIcon = String.fromCodePoint(9925);};
+                if (weatherTodayWeather.textContent === 'Thunderstorm') {weatherTodayWeatherIcon = String.fromCodePoint(127785)};
+                if (weatherTodayWeather.textContent === 'Drizzle') {weatherTodayWeatherIcon = String.fromCodePoint(127782)};
+                if (weatherTodayWeather.textContent === 'Rain') {weatherTodayWeatherIcon = String.fromCodePoint(9748)};
+                if (weatherTodayWeather.textContent === 'Snow') {weatherTodayWeatherIcon = String.fromCodePoint(10052)};
+                if (weatherTodayWeather.textContent === 'Atmosphere') {weatherTodayWeatherIcon = String.fromCodePoint(9925)};
+                if (weatherTodayWeather.textContent === 'Clear') {weatherTodayWeatherIcon = String.fromCodePoint(9728)};
 
-            weatherTodayTemp.textContent = `Temp: ${data.main.temp} F`;
+                // weatherTodayWeather.textContent = `${data.weather[0].main} ${weatherTodayWeatherIcon}`;
+
+            weatherTodayCity.textContent = `${data.name} (${dateInput}) ${weatherTodayWeatherIcon}`;
+            // weatherTodayTemp.textContent = `Temp: ${data.main.temp} F`;
             weatherTodayWind.textContent = `Wind: ${data.wind.speed} MPH`;
             weatherTodayHumdt.textContent = `Humidity: ${data.main.humidity} %`;
-        
-            weatherTodayCard.append(weatherTodayCity, weatherTodayTemp, weatherTodayWind, weatherTodayHumdt);
+
+
+            weatherTodayCard.append(weatherTodayCity, weatherTodayWind, weatherTodayHumdt);
             todayWeatherOutput.appendChild(weatherTodayCard);
-        
+                 
         }); 
 
         //get weather for next 5 days
@@ -93,6 +112,12 @@ searchBtn.addEventListener('click', function (event) {
                 while (fiveWeatherOutput.hasChildNodes()) {
                     fiveWeatherOutput.removeChild(fiveWeatherOutput.firstChild);
                 };
+
+
+                // weatherFiveWeather.textContent = `${data.list[1].weather[0].main}`;
+                // console.log(weatherFiveWeather.textContent);
+
+
                 
                 for (let i = 2; i < 35; i = i+8) {
                     weatherFiveCard = document.createElement('div');
@@ -114,6 +139,23 @@ searchBtn.addEventListener('click', function (event) {
 
                     const day = dayjs(new Date(data.list[i].dt_txt));
                     let dayInput = day.format('MM/DD/YYYY');
+
+                    // // let's find icon for weather condition "weatherFiveWeatherIcon" to display it then 
+
+                    // weatherFiveWeather.textContent = `${data.list[i].weather[0].main}`;
+                    // console.log(weatherFiveWeather.textContent);
+
+                    // // //source for icon display was chatGPT:  const unicodeCharacter = String.fromCodePoint(decimalCode);
+                    // // //source for weather condition variants is the website I am using for this WebApp https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2 
+                    // // if (weatherFiveWeather.textContent === 'Clouds') {weatherFiveWeatherIcon = String.fromCodePoint(9925);};
+                    // // if (weatherFiveWeather.textContent === 'Thunderstorm') {weatherFiveWeatherIcon = String.fromCodePoint(127785)};
+                    // // if (weatherFiveWeather.textContent === 'Drizzle') {weatherFiveWeatherIcon = String.fromCodePoint(127782)};
+                    // // if (weatherFiveWeather.textContent === 'Rain') {weatherFiveWeatherIcon = String.fromCodePoint(9748)};
+                    // // if (weatherFiveWeather.textContent === 'Snow') {weatherFiveWeatherIcon = String.fromCodePoint(10052)};
+                    // // if (weatherFiveWeather.textContent === 'Atmosphere') {weatherFiveWeatherIcon = String.fromCodePoint(9925)};
+                    // // if (weatherFiveWeather.textContent === 'Clear') {weatherFiveWeatherIcon = String.fromCodePoint(9728)};
+
+                    // //  weatherFiveWeather.textContent = `${data.list[i].weather[0].main} ${weatherFiveWeatherIcon}`;
 
 
                     weatherFiveDate.textContent = `${dayInput}`;
