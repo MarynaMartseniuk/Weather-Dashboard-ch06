@@ -15,10 +15,11 @@ var addNewCity = {};
 searchBtn.addEventListener('click', function (event) {
     event.preventDefault();
 
-    localStorage.removeItem('city');
+    //localStorage.removeItem('city');
 
     if (userCityInput.value) {
 
+        // ====================
         //get weather for today
 
         let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${userCityInput.value}&appid=${APIKey}`;
@@ -83,6 +84,7 @@ searchBtn.addEventListener('click', function (event) {
                  
         }); 
 
+        // ==========================
         //get weather for next 5 days
 
         let coordinatesURL = `http://api.openweathermap.org/geo/1.0/direct?q=${userCityInput.value}&limit=1&appid=${APIKey}`;
@@ -174,52 +176,124 @@ searchBtn.addEventListener('click', function (event) {
     
         });
 
+        // ==========================
         // save data to Local Storage
         addNewCity =  {
             cityName: userCityInput.value,
         };
-    
-        citiesList.push(addNewCity);
+        console.log(addNewCity.cityName );
+        console.log(citiesList[0].cityName);
+        console.log(citiesList.length);
 
-        // lets keep the number of cities in storage equal to 8 as to mock-up
-        if (citiesList.length > 8) {
-            citiesList.shift();
-        };
-    
-        localStorage.setItem("city", JSON.stringify(citiesList));
-    
-        userCityInput.value = "";
+        // if it is the first city simply add it to Local Storage. Else do all verification before add to LocalStorage
+        if (citiesList.length === 0) {
+            citiesList.push(addNewCity);
+            console.log(citiesList);
+            localStorage.setItem("city", JSON.stringify(citiesList));
+        
+            userCityInput.value = "";
 
-        // display data from Local Storage
-        // to sure of what cities are stored in LocalStorage, get list of cities from Local Storage and then display it
-        let getCitiesList = JSON.parse(localStorage.getItem("city"));
-        console.log(getCitiesList);
+            // display data from Local Storage
+            // to sure of what cities are stored in LocalStorage, get list of cities from Local Storage and then display it
+            let getCitiesList = JSON.parse(localStorage.getItem("city"));
+            console.log(getCitiesList);
 
-        //source: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
-        while (cityHistoryOutput.hasChildNodes()) {
-            cityHistoryOutput.removeChild(cityHistoryOutput.firstChild);
-          };
+            //source: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
+            while (cityHistoryOutput.hasChildNodes()) {
+                cityHistoryOutput.removeChild(cityHistoryOutput.firstChild);
+            };
 
-        for (let i = 0; i < getCitiesList.length; i++) {
-            cityCard = document.createElement('div');
-            cityCard.style.border = 'none';
-            cityCard.style.borderRadius = '4px';
-            cityCard.style.margin = '0px';
-            cityCard.style.backgroundColor = 'var(--grey)';
+            for (let i = 0; i < getCitiesList.length; i++) {
+                cityCard = document.createElement('div');
+                cityCard.style.border = 'none';
+                cityCard.style.borderRadius = '4px';
+                cityCard.style.margin = '0px';
+                cityCard.style.backgroundColor = 'var(--grey)';
 
 
-            cityTitle = document.createElement('p');
-            cityTitle.style.fontStyle = 'italic';
-            cityTitle.style.marginTop = '5px';
-            cityTitle.style.padding = '5px';
-            cityTitle.style.width = '100%';
+                cityTitle = document.createElement('p');
+                cityTitle.style.fontStyle = 'italic';
+                cityTitle.style.marginTop = '5px';
+                cityTitle.style.padding = '5px';
+                cityTitle.style.width = '100%';
+                
+                // source chatGPT 
+                // 1. const textContent = paragraph.textContent;
+                // 2. paragraph.setAttribute('data-text', textContent);
+                cityTitle.textContent = getCitiesList[i].cityName;
+                cityTitle.setAttribute('data-text', cityTitle.textContent);
+                console.log(cityTitle.getAttribute('data-text'));
 
-            cityTitle.textContent = getCitiesList[i].cityName;
+                cityCard.appendChild(cityTitle);
+                cityHistoryOutput.appendChild(cityCard);
 
-            cityCard.appendChild(cityTitle);
-            cityHistoryOutput.appendChild(cityCard);
+            };
+            
+        } else {
+            // lets store only unique cities
+            // if a=0 then city is unique
+            let a = 0;
+            for (let i = 0; i < citiesList.length; i++) {
+                if (addNewCity.cityName === citiesList[i].cityName) {
+                    a++;
+                };
+            }; 
+            console.log(a); 
 
-        };
+            // if city is unique then add to LocalStorage
+            if (a === 0) {
+
+                citiesList.push(addNewCity);
+                console.log(citiesList);
+
+                // lets keep the number of cities in storage equal to 8 as to mock-up
+                if (citiesList.length > 8) {
+                    citiesList.shift();
+                };
+            
+                localStorage.setItem("city", JSON.stringify(citiesList));
+            
+                userCityInput.value = "";
+
+                // display data from Local Storage
+                // to sure of what cities are stored in LocalStorage, get list of cities from Local Storage and then display it
+                let getCitiesList = JSON.parse(localStorage.getItem("city"));
+                console.log(getCitiesList);
+
+                //source: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
+                while (cityHistoryOutput.hasChildNodes()) {
+                    cityHistoryOutput.removeChild(cityHistoryOutput.firstChild);
+                };
+
+                for (let i = 0; i < getCitiesList.length; i++) {
+                    cityCard = document.createElement('div');
+                    cityCard.style.border = 'none';
+                    cityCard.style.borderRadius = '4px';
+                    cityCard.style.margin = '0px';
+                    cityCard.style.backgroundColor = 'var(--grey)';
+
+
+                    cityTitle = document.createElement('p');
+                    cityTitle.style.fontStyle = 'italic';
+                    cityTitle.style.marginTop = '5px';
+                    cityTitle.style.padding = '5px';
+                    cityTitle.style.width = '100%';
+                    
+                    // source chatGPT 
+                    // 1. const textContent = paragraph.textContent;
+                    // 2. paragraph.setAttribute('data-text', textContent);
+                    cityTitle.textContent = getCitiesList[i].cityName;
+                    cityTitle.setAttribute('data-text', cityTitle.textContent);
+                    console.log(cityTitle.getAttribute('data-text'));
+
+                    cityCard.appendChild(cityTitle);
+                    cityHistoryOutput.appendChild(cityCard);
+
+                };
+                
+            };
+            
+        }
 
     } else {
         alert("Please, fill in a city name!");
