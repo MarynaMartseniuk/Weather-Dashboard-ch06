@@ -50,7 +50,7 @@ searchBtn.addEventListener('click', function (event) {
             weatherTodayCity.style.fontWeight = '700';
 
             weatherTodayWeather = document.createElement('p');
-            weatherTodayCity.style.
+     
 
             weatherTodayTemp = document.createElement('p');
 
@@ -77,12 +77,13 @@ searchBtn.addEventListener('click', function (event) {
                 // weatherTodayWeather.textContent = `${data.weather[0].main} ${weatherTodayWeatherIcon}`;
 
             weatherTodayCity.textContent = `${data.name} (${dateInput}) ${weatherTodayWeatherIcon}`;
-            // weatherTodayTemp.textContent = `Temp: ${data.main.temp} F`;
+            // console.log(${data.main.temp});
+            weatherTodayTemp.textContent = `Temp: ${data.main.temp}`;
             weatherTodayWind.textContent = `Wind: ${data.wind.speed} MPH`;
             weatherTodayHumdt.textContent = `Humidity: ${data.main.humidity} %`;
 
 
-            weatherTodayCard.append(weatherTodayCity, weatherTodayWind, weatherTodayHumdt);
+            weatherTodayCard.append(weatherTodayCity, weatherTodayTemp, weatherTodayWind, weatherTodayHumdt);
             todayWeatherOutput.appendChild(weatherTodayCard);
                  
         }); 
