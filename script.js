@@ -186,9 +186,9 @@ searchBtn.addEventListener('click', function (event) {
         addNewCity =  {
             cityName: userCityInput.value,
         };
-        console.log(addNewCity.cityName);
-        console.log(citiesList[0].cityName);
-        console.log(citiesList.length);
+        // console.log(addNewCity.cityName);
+        // console.log(citiesList[0].cityName);
+        // console.log(citiesList.length);
 
         // if it is the first city simply add it to Local Storage. Else do all verification before add to LocalStorage
         if (citiesList.length === 0) {
