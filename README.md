@@ -22,7 +22,7 @@
 ## Instalation:
 Follow this link to get to the page https://marynamartseniuk.github.io/Weather-Dashboard-ch06/
 
-![WebPage as it looks like](https://github.com/MarynaMartseniuk/Weather-Dashboard-ch06/blob/main/assets/page-with-data-bug.jpg)
+![WebPage as it looks like](https://github.com/MarynaMartseniuk/Weather-Dashboard-ch06/blob/main/assets/page-with-data-F.jpg)
 
 ## Usage:
 
