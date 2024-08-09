@@ -58,7 +58,7 @@ searchBtn.addEventListener('click', function (event) {
 
             weatherTodayHumdt = document.createElement('p');
             
-                // let's find icon for weather condition "weatherTodayWeatherIcon" to display it then after the city name and today-date
+                // lets find icon for weather condition "weatherTodayWeatherIcon" to display it then after the city name and today-date
 
                 weatherTodayWeather.textContent = `${data.weather[0].main}`;
                 console.log(weatherTodayWeather.textContent);
@@ -77,8 +77,9 @@ searchBtn.addEventListener('click', function (event) {
                 // weatherTodayWeather.textContent = `${data.weather[0].main} ${weatherTodayWeatherIcon}`;
 
             weatherTodayCity.textContent = `${data.name} (${dateInput}) ${weatherTodayWeatherIcon}`;
-            // console.log(${data.main.temp});
-            weatherTodayTemp.textContent = `Temp: ${data.main.temp}`;
+
+                //lets convert Kelvin to Fahrenheit
+            weatherTodayTemp.textContent = `Temp: ${((data.main.temp-273.15)*1.8+32).toFixed(2)} F`;
             weatherTodayWind.textContent = `Wind: ${data.wind.speed} MPH`;
             weatherTodayHumdt.textContent = `Humidity: ${data.main.humidity} %`;
 
@@ -91,7 +92,7 @@ searchBtn.addEventListener('click', function (event) {
         // ==========================
         //get weather for next 5 days
 
-        let coordinatesURL = `http://api.openweathermap.org/geo/1.0/direct?q=${userCityInput.value}&limit=1&appid=${APIKey}`;
+        let coordinatesURL = `https://api.openweathermap.org/geo/1.0/direct?q=${userCityInput.value}&limit=1&appid=${APIKey}`;
 
         fetch(coordinatesURL )
         .then(function (response) {
@@ -152,22 +153,22 @@ searchBtn.addEventListener('click', function (event) {
                     // weatherFiveWeather.textContent = `${data.list[i].weather[0].main}`;
                     // console.log(weatherFiveWeather.textContent);
 
-                    // // // source for icon display was chatGPT:  const unicodeCharacter = String.fromCodePoint(decimalCode);
-                    // // // source for weather condition variants is the website I am using for this WebApp https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
-                    // // // source for weather icons https://www.w3schools.com/charsets/ref_emoji_weather.asp 
-                    // // if (weatherFiveWeather.textContent === 'Clouds') {weatherFiveWeatherIcon = String.fromCodePoint(9925);};
-                    // // if (weatherFiveWeather.textContent === 'Thunderstorm') {weatherFiveWeatherIcon = String.fromCodePoint(127785)};
-                    // // if (weatherFiveWeather.textContent === 'Drizzle') {weatherFiveWeatherIcon = String.fromCodePoint(127782)};
-                    // // if (weatherFiveWeather.textContent === 'Rain') {weatherFiveWeatherIcon = String.fromCodePoint(9748)};
-                    // // if (weatherFiveWeather.textContent === 'Snow') {weatherFiveWeatherIcon = String.fromCodePoint(10052)};
-                    // // if (weatherFiveWeather.textContent === 'Atmosphere') {weatherFiveWeatherIcon = String.fromCodePoint(9925)};
-                    // // if (weatherFiveWeather.textContent === 'Clear') {weatherFiveWeatherIcon = String.fromCodePoint(9728)};
+                    // // source for icon display was chatGPT:  const unicodeCharacter = String.fromCodePoint(decimalCode);
+                    // // source for weather condition variants is the website I am using for this WebApp https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
+                    // // source for weather icons https://www.w3schools.com/charsets/ref_emoji_weather.asp 
+                    // if (weatherFiveWeather.textContent === 'Clouds') {weatherFiveWeatherIcon = String.fromCodePoint(9925);};
+                    // if (weatherFiveWeather.textContent === 'Thunderstorm') {weatherFiveWeatherIcon = String.fromCodePoint(127785)};
+                    // if (weatherFiveWeather.textContent === 'Drizzle') {weatherFiveWeatherIcon = String.fromCodePoint(127782)};
+                    // if (weatherFiveWeather.textContent === 'Rain') {weatherFiveWeatherIcon = String.fromCodePoint(9748)};
+                    // if (weatherFiveWeather.textContent === 'Snow') {weatherFiveWeatherIcon = String.fromCodePoint(10052)};
+                    // if (weatherFiveWeather.textContent === 'Atmosphere') {weatherFiveWeatherIcon = String.fromCodePoint(9925)};
+                    // if (weatherFiveWeather.textContent === 'Clear') {weatherFiveWeatherIcon = String.fromCodePoint(9728)};
 
-                    // //  weatherFiveWeather.textContent = `${data.list[i].weather[0].main} ${weatherFiveWeatherIcon}`;
+                    // weatherFiveWeather.textContent = `${data.list[i].weather[0].main} ${weatherFiveWeatherIcon}`;
 
 
                     weatherFiveDate.textContent = `${dayInput}`;
-                    weatherFiveTemp.textContent = `Temp: ${data.list[i].main.temp} F`;
+                    weatherFiveTemp.textContent = `Temp: ${((data.list[i].main.temp-273.15)*1.8+32).toFixed(2)} F`; 
                     weatherFiveWind.textContent = `Wind: ${data.list[i].wind.speed} MPH`;
                     weatherFiveHumdt.textContent = `Humidity: ${data.list[i].main.humidity} %`;
 
@@ -185,7 +186,7 @@ searchBtn.addEventListener('click', function (event) {
         addNewCity =  {
             cityName: userCityInput.value,
         };
-        console.log(addNewCity.cityName );
+        console.log(addNewCity.cityName);
         console.log(citiesList[0].cityName);
         console.log(citiesList.length);
 
@@ -350,7 +351,6 @@ cityTarget.addEventListener('click', function (event) {
         weatherTodayCity.style.fontWeight = '700';
 
         weatherTodayWeather = document.createElement('p');
-        weatherTodayCity.style.
 
         weatherTodayTemp = document.createElement('p');
 
@@ -377,7 +377,7 @@ cityTarget.addEventListener('click', function (event) {
             // weatherTodayWeather.textContent = `${data.weather[0].main} ${weatherTodayWeatherIcon}`;
 
         weatherTodayCity.textContent = `${data.name} (${dateInput}) ${weatherTodayWeatherIcon}`;
-        // weatherTodayTemp.textContent = `Temp: ${data.main.temp} F`;
+        weatherTodayTemp.textContent = `((data.main.temp-273.15)*1.8+32).toFixed(2)} F`;
         weatherTodayWind.textContent = `Wind: ${data.wind.speed} MPH`;
         weatherTodayHumdt.textContent = `Humidity: ${data.main.humidity} %`;
 
@@ -390,7 +390,7 @@ cityTarget.addEventListener('click', function (event) {
     // ==========================
     //get weather for next 5 days
 
-    let coordinatesURL = `http://api.openweathermap.org/geo/1.0/direct?q=${getCity}&limit=1&appid=${APIKey}`;
+    let coordinatesURL = `https://api.openweathermap.org/geo/1.0/direct?q=${getCity}&limit=1&appid=${APIKey}`;
 
     fetch(coordinatesURL )
     .then(function (response) {
@@ -466,7 +466,7 @@ cityTarget.addEventListener('click', function (event) {
 
 
                 weatherFiveDate.textContent = `${dayInput}`;
-                weatherFiveTemp.textContent = `Temp: ${data.list[i].main.temp} F`;
+                weatherFiveTemp.textContent = `Temp: ${((data.list[i].main.temp-273.15)*1.8+32).toFixed(2)} F`;
                 weatherFiveWind.textContent = `Wind: ${data.list[i].wind.speed} MPH`;
                 weatherFiveHumdt.textContent = `Humidity: ${data.list[i].main.humidity} %`;
 
